@@ -55,7 +55,31 @@ $(document).ready(function (){
         }
     },
     error: function (err) {
-        // alert(err);
+        alert(err);
     }
+});
+
+$.ajax({
+    type: "post",
+    url: "http://0.0.0.0:5001/api/v1/places_search/",
+    data: JSON.stringify({}),
+    contentType: "application/json",
+    success: function(data) {
+      
+        for (let d of data){
+            console.log(d)
+            $(".places").append("<article><div class='title_box'><h2>"+ 
+            d.name+"</h2><div class='price_by_night'>"+ 
+            d.price_by_night +"</div></div><div class='information'><div class='max_guest'>" + d.max_guest + "Guest" + (d.max_guest > 1 ? "s": "") +
+            "</div><div class='number_rooms'>" + d.number_rooms + "Bedroom" + (d.number_rooms != 1 ? "s": "") + 
+            "</div><div class='number_bathrooms'>" + d.number_bathrooms + "Bathroom" + 
+            (d.number_bathrooms != 1 ?"s": "") + "</div></div></article>")
+        }
+    },
+    error: function(err) {
+        console.log(err)
+    }
+
 })
+
 })
