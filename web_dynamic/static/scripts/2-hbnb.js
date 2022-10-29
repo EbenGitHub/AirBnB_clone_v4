@@ -8,14 +8,12 @@ $(document).ready(function () {
 		}
 		$('.amenities H4').text(Object.values(amenities).join(', '));
 	});
-	$.get('http://0.0.0.0:5001/api/v1/status/', function(data, status) {
-		$('.amenities H4').text(data.status);
-		$('.amenities H4').text("well done");
-		if (data["status"] === 'OK') {
-			$("DIV#api_status").addClass("available");
+	
+	$.get('http://3.227.251.198:5001/api/v1/status/', function(data) {
+		if (data.status === "OK") {
+			$('div#api_status').addClass('available');
 		} else {
-			$("DIV#api_status").removeClass("available");
+			$('div#api_status').removeClass('available');
 		}
 	});
-
 });
